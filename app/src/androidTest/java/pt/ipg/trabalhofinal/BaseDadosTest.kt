@@ -9,7 +9,7 @@ import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import pt.ipg.livros.BDLivrosOpenHelper
+
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -24,23 +24,19 @@ class BaseDadosTest {
         InstrumentationRegistry.getInstrumentation().targetContext
 
     private fun getWritableDatabase(): SQLiteDatabase {
-        val openHelper = BDLivrosOpenHelper(appContext())
+        val openHelper = BDStandOpenHelper(appContext())
         return openHelper.writableDatabase
     }
 
     private fun insereCliente(db: SQLiteDatabase, cliente: Cliente) {
-        Cliente.id = TabelaBDCliente(db).insert(Cliente.toContentValues())
-        assertNotEquals(-1, Cliente.id)
+        cliente.id = TabelaBDCliente(db).insert(cliente.toContentValues())
+        assertNotEquals(-1, cliente.id)
     }
 
-    private fun insereLivro(db: SQLiteDatabase, livro: Livro) {
-        livro.id = TabelaBDLivros(db).insert(livro.toContentValues())
-        assertNotEquals(-1, livro.id)
-    }
 
     @Before
     fun apagaBaseDados() {
-        appContext().deleteDatabase(BDLivrosOpenHelper.NOME)
+        appContext().deleteDatabase(BDStandOpenHelper.NOME)
     }
     @Test
     fun useAppContext() {
