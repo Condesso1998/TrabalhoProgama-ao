@@ -2,10 +2,11 @@ package pt.ipg.trabalhofinal
 
 import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
+import pt.ipg.livros.TabelaBD
 
-class TabelaBDCarros (val db: SQLiteDatabase) {
-    fun cria(){
-        db.execSQL("CREATE TABLE $IDCARRO (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $MATRICULA TEXT NOT NULL, $MARCA TEXT NOT NULL, $MODELO TEXT NOT NULL, $COR TEXT NOT NULL)  ")
+class TabelaBDCarros (db: SQLiteDatabase) : TabelaBD(db, NOME) {
+    override fun cria(){
+        db.execSQL("CREATE TABLE $NOME (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $MATRICULA TEXT NOT NULL, $MARCA TEXT NOT NULL, $MODELO TEXT NOT NULL, $COR TEXT NOT NULL)  ")
 
     }
 
@@ -14,8 +15,8 @@ class TabelaBDCarros (val db: SQLiteDatabase) {
 
 
     companion object{
-        const val IDCARRO ="nome"
-        const val MATRICULA = "nif"
+        const val NOME ="IDdoCarros"
+        const val MATRICULA = "matricula"
         const val MARCA = "marca"
         const val MODELO = "modelo"
         const val COR = "cor"

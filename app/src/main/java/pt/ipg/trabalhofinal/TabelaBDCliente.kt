@@ -2,9 +2,11 @@ package pt.ipg.trabalhofinal
 
 import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
+import pt.ipg.livros.TabelaBD
 
-class TabelaBDCliente (val db: SQLiteDatabase) {
-    fun cria(){
+
+class TabelaBDCliente ( db: SQLiteDatabase) : TabelaBD(db, NOME) {
+    override fun cria(){
         db.execSQL("CREATE TABLE $NOME (${BaseColumns._ID} TEXT PRIMARY KEY AUTOINCREMENT, $CAMPO_NIF INTEGER NOT NULL $CAMPO_TELEFONE INTEGER NOT NULL ON DELETE RESTRICT) ")
 
     }

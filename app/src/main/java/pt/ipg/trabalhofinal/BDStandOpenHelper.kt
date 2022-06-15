@@ -1,10 +1,10 @@
-package pt.ipg.livros
+package pt.ipg.trabalhofinal
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class BDLivrosOpenHelper(context: Context?) : SQLiteOpenHelper(context, NOME, null, VERSAO) {
+class BDStandOpenHelper (context: Context?) : SQLiteOpenHelper(context, NOME, null, VERSAO) {
     /**
      * Called when the database is created for the first time. This is where the
      * creation of tables and the initial population of the tables should happen.
@@ -18,8 +18,6 @@ class BDLivrosOpenHelper(context: Context?) : SQLiteOpenHelper(context, NOME, nu
         TabelaBDCliente(db).cria()
         TabelaBDCarros(db).cria()
     }
-
-
 
     /**
      * Called when the database needs to be upgraded. The implementation
