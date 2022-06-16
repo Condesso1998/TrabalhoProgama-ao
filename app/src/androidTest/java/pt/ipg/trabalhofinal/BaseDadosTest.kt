@@ -66,11 +66,11 @@ class BaseDadosTest {
     fun consegueInserirLivro() {
         val db = getWritableDatabase()
 
-        val categoria = Cliente("Rui")
+        val categoria = Cliente("Rui Condesso")
         insereCliente(db, categoria)
 
-        val livro = Livro("O Leão que Temos Cá Dentro", "Rachel Bright", categoria.id)
-        insereCarro(db, livro)
+        val Carro = Carro("AF-15-OU", "Mercedes", "A 45","Cinza")
+        insereCarro(db, Carro);
 
         db.close()
     }
