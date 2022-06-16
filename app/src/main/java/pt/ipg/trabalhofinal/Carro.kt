@@ -9,9 +9,11 @@ import android.provider.BaseColumns
      var Matricula : String,
      var Marca: String,
      var Modelo: String,
-     var Cor: String
-
+     var Cor: String,
+     var id: Long =-1
          ){
+
+
      fun toContentValues() : ContentValues {
          val valores = ContentValues()
 

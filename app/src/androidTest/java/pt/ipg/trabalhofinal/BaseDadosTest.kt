@@ -32,20 +32,46 @@ class BaseDadosTest {
         cliente.id = TabelaBDCliente(db).insert(cliente.toContentValues())
         assertNotEquals(-1, cliente.id)
     }
-    private fun insere(db: SQLiteDatabase, cliente: Cliente) {
-        cliente.id = TabelaBDCliente(db).insert(cliente.toContentValues())
-        assertNotEquals(-1, cliente.id)
-    }
 
+    private fun insereCarro(db: SQLiteDatabase, Carro: Carro) {
+        Carro.id = TabelaBDCarros(db).insert(Carro.toContentValues())
+        assertNotEquals(-1, Carro.id)
+    }
 
     @Before
     fun apagaBaseDados() {
         appContext().deleteDatabase(BDStandOpenHelper.NOME)
     }
+
     @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("pt.ipg.trabalhofinal", appContext.packageName)
+    fun consegueAbrirBaseDados() {
+        val openHelper = BDStandOpenHelper(appContext())
+        val db = openHelper.readableDatabase
+
+        assertTrue(db.isOpen)
+
+        db.close()
+    }
+
+    @Test
+    fun consegueInserirCliente() {
+        val db = getWritableDatabase()
+
+        insereCliente(db, Cliente("Rui Condesso "))
+
+        db.close()
+    }
+
+
+    fun consegueInserirLivro() {
+        val db = getWritableDatabase()
+
+        val categoria = Cliente("Rui")
+        insereCliente(db, categoria)
+
+        val livro = Livro("O Leão que Temos Cá Dentro", "Rachel Bright", categoria.id)
+        insereCarro(db, livro)
+
+        db.close()
     }
 }
