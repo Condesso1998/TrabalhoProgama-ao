@@ -16,8 +16,7 @@ class Cliente (var nome: String, var id: Long = -1) {
 
     companion object {
 
-
-        fun fromCursor (cursor: Cursor):  Any?{
+        fun fromCursor (cursor: Cursor):  Cliente{
             val posId = cursor.getColumnIndex(BaseColumns._ID)
             val posNome = cursor.getColumnIndex(TabelaBDCliente.NOME)
             val posNif = cursor.getColumnIndex(TabelaBDCliente.CAMPO_NIF)

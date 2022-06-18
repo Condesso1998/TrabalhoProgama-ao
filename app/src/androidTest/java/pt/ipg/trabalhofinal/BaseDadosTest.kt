@@ -129,13 +129,13 @@ class BaseDadosTest {
     fun consegueLerCliente() {
         val db = getWritableDatabase()
 
-        val Cliente = Cliente("Rui Condesso")
-        insereCliente(db, Cliente  )
+        val cliente = Cliente("Rui Condesso")
+        insereCliente(db, cliente  )
 
         val cursor = TabelaBDCliente(db).query(
             TabelaBDCliente.TODAS_COLUNAS,
             "${BaseColumns._ID}=?",
-            arrayOf("${Cliente.id}"),
+            arrayOf("${cliente.id}"),
             null,
             null,
             null
@@ -146,35 +146,11 @@ class BaseDadosTest {
 
         val clienteBD = Cliente.fromCursor(cursor)
 
-        assertEquals(Cliente, clienteBD)
+        assertEquals(cliente, clienteBD)
 
         db.close()
     }
-    @Test
-    fun consegueLerCarro() {
-        val db = getWritableDatabase()
 
-        val Carro = Carro("AF-15-OU","Mercedes","A45","Cinza")
-        insereCarro(db, Carro)
-
-        val cursor = TabelaBDCarros(db).query(
-            TabelaBDCarros.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
-            arrayOf("${Carro.id}"),
-            null,
-            null,
-            null
-        )
-
-        assertEquals(1, cursor.count)
-        assertTrue(cursor.moveToNext())
-
-        val CarrosBD = Carro.fromCursor(cursor)
-
-        assertEquals(Carro, CarrosBD)
-
-        db.close()
-    }
 
 
 }
