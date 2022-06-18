@@ -10,14 +10,13 @@ class TabelaBDCarros (db: SQLiteDatabase) : TabelaBD(db, MATRICULA) {
 
     }
 
-
     companion object{
 
         const val MATRICULA = "matricula"
         const val MARCA = "marca"
         const val MODELO = "modelo"
         const val COR = "cor"
-
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, TabelaBDCliente.NOME)
     }
 
 

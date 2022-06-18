@@ -20,6 +20,7 @@ class TabelaBDCliente ( db: SQLiteDatabase) : TabelaBD(db, NOME) {
         const val CAMPO_NIF = "nif"
         const val CAMPO_TELEFONE = "telefone"
 
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, NOME)
     }
 
 }

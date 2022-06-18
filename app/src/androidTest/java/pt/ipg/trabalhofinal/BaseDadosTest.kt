@@ -114,10 +114,7 @@ class BaseDadosTest {
     fun consegueEliminarCarro() {
         val db = getWritableDatabase()
 
-        val Carro = Carro("AF-15-OU")
-        insereCarro(db, Carro)
-
-        val carro = Carro("AF-15-OU", "Mercedes", "A45","Cinza")
+        val Carro = Carro("AF-15-OU", "Mercedes", "A45","Cinza")
         insereCarro(db, Carro)
 
         val registosEliminados = TabelaBDCarros(db).delete(
@@ -128,4 +125,32 @@ class BaseDadosTest {
 
         db.close()
     }
+    @Test
+    fun consegueLerCliente() {
+        val db = getWritableDatabase()
+
+        val Cliente = Cliente("Rui Condesso")
+        insereCliente(db, Cliente  )
+
+        val cursor = TabelaBDCliente(db).query(
+            TabelaBDCliente.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${Cliente.id}"),
+            null,
+            null,
+            null
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val clienteBD = Cliente.fromCursor(cursor)
+
+        assertEquals(Cliente, clienteBD)
+
+        db.close()
+    }
+
+
+
 }
