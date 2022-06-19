@@ -18,7 +18,7 @@ class ContentProviderTrabalhoFinal: ContentProvider() {
     }
 
     override fun query(
-        Uri: Uri,
+        uri: Uri,
         projection: Array<out String>?,
         selection: String?,
         selectionArgs: Array<out String>?,
@@ -48,6 +48,15 @@ class ContentProviderTrabalhoFinal: ContentProvider() {
     }
 
 
+
+    override fun getType(uri: Uri): String? {
+        when (getUriMatcher().match(uri)) {
+            URI_Carros -> "$MULTIPLOS_REGISTOS/${TabelaBDCarros.MATRICULA}"
+            URI_Clientes -> "$MULTIPLOS_REGISTOS/${TabelaBDCliente.NOME}"
+            URI_Carros_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDCarros.MATRICULA}"
+            URI_Cliente_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDCliente.NOME}"
+            else -> null
+    }
 
 
 }
