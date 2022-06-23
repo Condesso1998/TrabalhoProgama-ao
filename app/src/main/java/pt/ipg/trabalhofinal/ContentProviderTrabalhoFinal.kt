@@ -18,11 +18,11 @@ class ContentProviderTrabalhoFinal: ContentProvider() {
     }
 
     override fun query(
-        p0: Uri,
-        p1: Array<out String>?,
-        p2: String?,
-        p3: Array<out String>?,
-        p4: String?
+        uri: Uri,
+        projection: Array<out String>?,
+        selection: String?,
+        selectionArgs: Array<out String>?,
+        sortOrder: String?
     ): Cursor? {
         TODO("Not yet implemented")
     }
@@ -97,15 +97,21 @@ class ContentProviderTrabalhoFinal: ContentProvider() {
             return registosAlterados
         }
     companion object {
-        const val AUTHORITY = "pt.ipg.trabalhofinal"
+        private val AUTHORITY = "pt.ipg.trabalhofinal"
 
-        const val URI_Clientes  = 100
-        const val URI_Cliente_ESPECIFICO = 101
-        const val URI_Carros = 200
-        const val URI_Carros_ESPECIFICO  = 201
+        private val URI_Clientes  = 100
+        private val URI_Cliente_ESPECIFICO = 101
+        private val URI_Carros = 200
+        private val URI_Carros_ESPECIFICO  = 201
 
-        const val UNICO_REGISTO = "vnd.android.cursor.item"
-        const val MULTIPLOS_REGISTOS = "vnd.android.cursor.dir"
+        private val UNICO_REGISTO = "vnd.android.cursor.item"
+        private val MULTIPLOS_REGISTOS = "vnd.android.cursor.dir"
+
+        private val ENDERECO_BASE = Uri.parse("content://$AUTHORITY")
+        val ENDERECO_Carros = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDCarros.MATRICULA)
+        val ENDERECO_Clientes = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDCliente.NOME)
+
+
 
         fun getUriMatcher() : UriMatcher {
             var uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
