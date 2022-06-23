@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import pt.ipg.trabalhofinal.databinding.ActivityMainBinding.inflate
 import pt.ipg.trabalhofinal.databinding.FragmentMenuPrincipalBinding
-import pt.ipg.trabalhofinal.databinding.FragmentSecondBinding.inflate
+
 
 class MenuFirstFragment: Fragment() {
 
