@@ -72,11 +72,27 @@ class ContentProviderTrabalhoFinal: ContentProvider() {
         return registosApagados
     }
 
+    override fun update(p0: Uri, p1: ContentValues?, p2: String?, p3: Array<out String>?): Int {
 
+            requireNotNull(values)
 
+            val db = dbOpenHelper!!.writableDatabase
 
+            val id = uri.lastPathSegment
 
+            val registosAlterados = when (getUriMatcher().match(uri)) {
+                URI_Carro_ESPECIFICO -> TabelaBDCarros(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
+                URI_Cliente_ESPECIFICO -> TabelaBDCliente(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
+                else -> 0
+            }
 
+            db.close()
+
+            return registosAlterados
+        }
 
     }
+
+
+
 
