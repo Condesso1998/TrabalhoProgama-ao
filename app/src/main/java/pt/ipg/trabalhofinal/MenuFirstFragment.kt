@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import pt.ipg.trabalhofinal.databinding.FragmentFirstBinding
 
-class FirstFragment: Fragment() {
+class MenuFirstFragment: Fragment() {
 
     private var _binding: FragmentFirstBinding? = null
 
