@@ -27,8 +27,8 @@ class ContentProviderTrabalhoFinal: ContentProvider() {
         TODO("Not yet implemented")
     }
 
-    override fun getType(uri: Uri) {
-        when (getUriMatcher().match(uri)) {
+    override fun getType(uri: Uri): String? {
+        return when (getUriMatcher().match(uri)) {
             URI_Carros -> "$MULTIPLOS_REGISTOS/${TabelaBDCarros.MATRICULA}"
             URI_Clientes -> "$MULTIPLOS_REGISTOS/${TabelaBDCliente.NOME}"
             URI_Carros_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDCarros.MATRICULA}"
@@ -45,7 +45,7 @@ class ContentProviderTrabalhoFinal: ContentProvider() {
 
         val id = when (getUriMatcher().match(uri)) {
             URI_Carros -> TabelaBDCarros(db).insert(values)
-            URI_CATEURI_ClientesGORIAS -> TabelaBDCliente(db).insert(values)
+            URI_Cliente_ESPECIFICO -> TabelaBDCliente(db).insert(values)
             else -> -1
         }
 
@@ -56,13 +56,14 @@ class ContentProviderTrabalhoFinal: ContentProvider() {
         return Uri.withAppendedPath(uri, "$id")
     }
 
-    override fun delete(p0: Uri, p1: String?, p2: Array<out String>?): Int {
+    override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int {
         val db = dbOpenHelper!!.writableDatabase
+
 
         val id = uri.lastPathSegment
 
         val registosApagados = when (getUriMatcher().match(uri)) {
-            URI_Carro_ESPECIFICO -> TabelaBDCarros(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_Carros_ESPECIFICO -> TabelaBDCarros(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_Cliente_ESPECIFICO -> TabelaBDCliente(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
             else -> 0
         }
@@ -72,7 +73,12 @@ class ContentProviderTrabalhoFinal: ContentProvider() {
         return registosApagados
     }
 
-    override fun update(p0: Uri, p1: ContentValues?, p2: String?, p3: Array<out String>?): Int {
+    override fun update(
+        uri: Uri,
+        values: ContentValues?,
+        selection: String?,
+        selectionArgs: Array<out String>?
+    ): Int {
 
             requireNotNull(values)
 
@@ -81,7 +87,7 @@ class ContentProviderTrabalhoFinal: ContentProvider() {
             val id = uri.lastPathSegment
 
             val registosAlterados = when (getUriMatcher().match(uri)) {
-                URI_Carro_ESPECIFICO -> TabelaBDCarros(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
+                URI_Carros_ESPECIFICO -> TabelaBDCarros(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
                 URI_Cliente_ESPECIFICO -> TabelaBDCliente(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
                 else -> 0
             }
@@ -90,7 +96,28 @@ class ContentProviderTrabalhoFinal: ContentProvider() {
 
             return registosAlterados
         }
+    companion object {
+        const val AUTHORITY = "pt.ipg.trabalhofinal"
 
+        const val URI_Clientes  = 100
+        const val URI_Cliente_ESPECIFICO = 101
+        const val URI_Carros = 200
+        const val URI_Carros_ESPECIFICO  = 201
+
+        const val UNICO_REGISTO = "vnd.android.cursor.item"
+        const val MULTIPLOS_REGISTOS = "vnd.android.cursor.dir"
+
+        fun getUriMatcher() : UriMatcher {
+            var uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
+
+            uriMatcher.addURI(AUTHORITY, TabelaBDCliente.NOME, URI_Clientes)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDCliente.NOME}/#", URI_Cliente_ESPECIFICO)
+            uriMatcher.addURI(AUTHORITY, TabelaBDCarros.MATRICULA, URI_Carros)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDCarros.MATRICULA}/#", URI_Carros_ESPECIFICO)
+
+            return uriMatcher
+        }
+    }
     }
 
 
