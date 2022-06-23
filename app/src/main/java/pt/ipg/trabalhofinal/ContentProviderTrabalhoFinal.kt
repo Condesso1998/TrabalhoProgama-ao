@@ -8,7 +8,7 @@ import android.net.Uri
 import android.provider.BaseColumns
 
 class ContentProviderTrabalhoFinal: ContentProvider() {
-    var dbOpenHelper : BDStandOpenHelper? = null
+    var dbOpenHelper: BDStandOpenHelper? = null
 
 
     override fun onCreate(): Boolean {
@@ -18,45 +18,65 @@ class ContentProviderTrabalhoFinal: ContentProvider() {
     }
 
     override fun query(
-        uri: Uri,
-        projection: Array<out String>?,
-        selection: String?,
-        selectionArgs: Array<out String>?,
-        sortOrder: String?
+        p0: Uri,
+        p1: Array<out String>?,
+        p2: String?,
+        p3: Array<out String>?,
+        p4: String?
     ): Cursor? {
-        val db = dbOpenHelper!!.readableDatabase
-
-        requireNotNull(projection)
-        val colunas = projection as Array<String>
-
-        val argsSeleccao = selectionArgs as Array<String>?
-
-
-        val id = uri.lastPathSegment
-
-        val cursor = when (getUriMatcher().match(uri)) {
-            URI_Carros -> TabelaBDCarros(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
-            URI_Clientes -> TabelaBDCliente(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
-            URI_Carros_ESPECIFICO -> TabelaBDCarros(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
-            URI_Cliente_ESPECIFICO -> TabelaBDCliente(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
-            else -> null
-        }
-
-        db.close()
-
-        return cursor
+        TODO("Not yet implemented")
     }
 
-
-
-    override fun getType(uri: Uri): String? {
+    override fun getType(uri: Uri) {
         when (getUriMatcher().match(uri)) {
             URI_Carros -> "$MULTIPLOS_REGISTOS/${TabelaBDCarros.MATRICULA}"
             URI_Clientes -> "$MULTIPLOS_REGISTOS/${TabelaBDCliente.NOME}"
             URI_Carros_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDCarros.MATRICULA}"
             URI_Cliente_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDCliente.NOME}"
             else -> null
+        }
+
+
+    }
+    override fun insert(uri: Uri, values: ContentValues?): Uri? {
+        val db = dbOpenHelper!!.writableDatabase
+
+        requireNotNull(values)
+
+        val id = when (getUriMatcher().match(uri)) {
+            URI_Carros -> TabelaBDCarros(db).insert(values)
+            URI_CATEURI_ClientesGORIAS -> TabelaBDCliente(db).insert(values)
+            else -> -1
+        }
+
+        db.close()
+
+        if (id == -1L) return null
+
+        return Uri.withAppendedPath(uri, "$id")
+    }
+
+    override fun delete(p0: Uri, p1: String?, p2: Array<out String>?): Int {
+        val db = dbOpenHelper!!.writableDatabase
+
+        val id = uri.lastPathSegment
+
+        val registosApagados = when (getUriMatcher().match(uri)) {
+            URI_Carro_ESPECIFICO -> TabelaBDCarros(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_Cliente_ESPECIFICO -> TabelaBDCliente(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            else -> 0
+        }
+
+        db.close()
+
+        return registosApagados
     }
 
 
-}
+
+
+
+
+
+    }
+
