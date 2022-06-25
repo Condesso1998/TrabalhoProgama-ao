@@ -121,7 +121,8 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
      */
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
 
-        TODO("Not yet implemented")
+        adapterCarros!!.cursor = data
+
     }
 
     /**
@@ -135,7 +136,7 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
      * @param loader The Loader that is being reset.
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        TODO("Not yet implemented")
+        adapterCarros!!.cursor = null
     }
     companion object {
         const val ID_LOADER_Carros = 0
