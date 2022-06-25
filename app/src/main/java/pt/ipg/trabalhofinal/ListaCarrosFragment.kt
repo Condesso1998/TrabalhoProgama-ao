@@ -43,7 +43,7 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
         LoaderManager.getInstance(this).initLoader(ID_LOADER_Carros, null,this)
 
-        adapterCarros = AdapterCarros()
+        adapterCarros = AdapterCarros(this)
         binding.recyclerViewCarros.adapter = adapterCarros
         binding.recyclerViewCarros.layoutManager = LinearLayoutManager(requireContext())
     }

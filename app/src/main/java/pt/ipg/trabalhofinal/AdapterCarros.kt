@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 
-class AdapterCarros : RecyclerView.Adapter<AdapterCarros.ViewHolderCarros>(){
+class AdapterCarros (val fragment: ListaCarrosFragment): RecyclerView.Adapter<AdapterCarros.ViewHolderCarros>(){
 
 
     var cursor: Cursor? = null
