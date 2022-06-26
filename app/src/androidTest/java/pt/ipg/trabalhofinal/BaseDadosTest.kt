@@ -88,7 +88,7 @@ class BaseDadosTest {
 
         val registosAlterados = TabelaBDCliente(db).update(
             cliente.toContentValues(),
-            "${BaseColumns._ID}=?",
+            "${TabelaBDCliente.CAMPO_ID}=?",
             arrayOf("${cliente.id}"))
 
         assertEquals(1, registosAlterados)

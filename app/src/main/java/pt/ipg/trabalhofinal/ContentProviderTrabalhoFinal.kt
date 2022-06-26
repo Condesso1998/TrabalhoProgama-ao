@@ -24,7 +24,24 @@ class ContentProviderTrabalhoFinal: ContentProvider() {
         selectionArgs: Array<out String>?,
         sortOrder: String?
     ): Cursor? {
-        TODO("Not yet implemented")
+        val db = dbOpenHelper!!.readableDatabase
+
+        requireNotNull(projection)
+        val colunas = projection as Array<String>
+
+        val argsSeleccao = selectionArgs as Array<String>?
+
+        val id = uri.lastPathSegment
+
+        val cursor = when (getUriMatcher().match(uri)) {
+            URI_Carros -> TabelaBDCarros(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
+            URI_Clientes -> TabelaBDCliente(db).query (colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
+            URI_Carros_ESPECIFICO -> TabelaBDCarros(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
+            URI_Cliente_ESPECIFICO -> TabelaBDCliente(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
+            else -> null
+        }
+
+        return cursor
     }
 
     override fun getType(uri: Uri): String? {
@@ -32,7 +49,7 @@ class ContentProviderTrabalhoFinal: ContentProvider() {
             URI_Carros -> "$MULTIPLOS_REGISTOS/${TabelaBDCarros.MATRICULA}"
             URI_Clientes -> "$MULTIPLOS_REGISTOS/${TabelaBDCliente.NOME}"
             URI_Carros_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDCarros.MATRICULA}"
-            URI_Cliente_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDCliente.NOME}"
+            URI_Carros_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDCliente.NOME}"
             else -> null
         }
 
