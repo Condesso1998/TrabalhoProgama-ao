@@ -27,14 +27,14 @@ import android.provider.BaseColumns
 
      companion object {
          fun fromCursor(cursor: Cursor): Carro {
-
+             val posId = cursor.getColumnIndex(BaseColumns._ID)
              val posMatricula = cursor.getColumnIndex(TabelaBDCarros.MATRICULA)
              val posMarca = cursor.getColumnIndex(TabelaBDCarros.MARCA)
              val posModelo= cursor.getColumnIndex(TabelaBDCarros.MODELO)
              val posCor = cursor.getColumnIndex(TabelaBDCarros.COR)
 
 
-
+             val id = cursor.getLong(posId)
              val Matricula = cursor.getString(posMatricula)
              val Marca = cursor.getString(posMarca)
              val MODELO = cursor.getString(posModelo)
