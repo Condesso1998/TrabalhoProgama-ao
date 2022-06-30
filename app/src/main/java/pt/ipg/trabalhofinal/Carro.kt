@@ -4,13 +4,14 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
 
- data class Carro (
+ data class Carro(
 
-     var Matricula : String,
+     var Matricula: String,
      var Marca: String,
      var Modelo: String,
      var Cor: String,
-     var id: Long =-1
+     var id: Cliente = -1
+
          ){
 
 

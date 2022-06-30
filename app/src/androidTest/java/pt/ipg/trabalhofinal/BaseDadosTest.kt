@@ -33,9 +33,9 @@ class BaseDadosTest {
         assertNotEquals(-1, cliente.id)
     }
 
-    private fun insereCarro(db: SQLiteDatabase, Carro: Carro) {
-        Carro.id = TabelaBDCarros(db).insert(Carro.toContentValues())
-        assertNotEquals(-1, Carro.id)
+    private fun insereCarro(db: SQLiteDatabase, carro: Carro) {
+        carro.id = TabelaBDCarros(db).insert(carro.toContentValues())
+        assertNotEquals(-1, carro.id)
     }
 
     @Before
@@ -69,7 +69,7 @@ class BaseDadosTest {
         val Cliente = Cliente("Rui Condesso")
         insereCliente(db, Cliente )
 
-        val Carro = Carro("AF-15-OU", "Mercedes", "A45","Cinza")
+        val Carro = Carro("AF-15-OU", "Mercedes", "A45","Cinza",Cliente)
         insereCarro(db, Carro);
 
         db.close()

@@ -8,4 +8,9 @@
     <string name="Carros">Carros</string>
     <string name="previous">Previous</string>
 
+
+    <string name="inserir">Inserir</string>
+    <string name="alterar">Alterar</string>
+    <string name="eliminar">Eliminar</string>
+
 </resources>
