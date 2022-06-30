@@ -46,6 +46,8 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         adapterCarros = AdapterCarros(this)
         binding.recyclerViewCarros.adapter = adapterCarros
         binding.recyclerViewCarros.layoutManager = LinearLayoutManager(requireContext())
+        val activity = activity as MainActivity
+        activity.idMenuAtual = R.menu.menu_lista
     }
 
     override fun onDestroyView() {
