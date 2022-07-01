@@ -12,5 +12,9 @@
     <string name="inserir">Inserir</string>
     <string name="alterar">Alterar</string>
     <string name="eliminar">Eliminar</string>
+    <string name="Matricula" />
+    <string name="Marca" />
+    <string name="Modelo" />
+    <string name="Cor" />
 
 </resources>
