@@ -4,6 +4,7 @@
     <!-- Strings used for fragments for navigation -->
     <string name="menu_principal_label">First Fragment</string>
     <string name="lista_Carros_labe">Second Fragment</string>
+
     <string name="Clientes">Clientes</string>
     <string name="Carros">Carros</string>
     <string name="previous">Previous</string>
@@ -12,11 +13,16 @@
     <string name="inserir">Inserir</string>
     <string name="alterar">Alterar</string>
     <string name="eliminar">Eliminar</string>
+
     <string name="Matricula" />
     <string name="Marca" />
     <string name="Modelo" />
     <string name="Cor" />
+
     <string name="first_fragment_label" />
     <string name="second_fragment_label" />
+
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
 
 </resources>

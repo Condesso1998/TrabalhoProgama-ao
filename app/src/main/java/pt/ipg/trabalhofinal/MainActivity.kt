@@ -60,8 +60,11 @@ class MainActivity : AppCompatActivity() {
          if (fragment is MenuFirstFragment){
              opcaoProcessada = (fragment as MenuFirstFragment).processaOpcaoMenu(item)
          } else if (fragment is ListaCarrosFragment) {
-             opcaoProcessada = (fragment as MenuFirstFragment).processaOpcaoMenu(item)
-         } else {
+             opcaoProcessada = (fragment as ListaCarrosFragmentFragment).processaOpcaoMenu(item)
+         }else if ( fragment is InserirCarrosFragment){
+             opcaoProcessada = (fragment as InserirCarrosFragment).processaOpcaoMenu(item)
+         }
+         else {
              opcaoProcessada = false
          }
 
@@ -76,3 +79,4 @@ class MainActivity : AppCompatActivity() {
                 || super.onSupportNavigateUp()
     }
 }
+
