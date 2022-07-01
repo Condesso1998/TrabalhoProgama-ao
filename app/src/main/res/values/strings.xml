@@ -16,5 +16,7 @@
     <string name="Marca" />
     <string name="Modelo" />
     <string name="Cor" />
+    <string name="first_fragment_label" />
+    <string name="second_fragment_label" />
 
 </resources>
