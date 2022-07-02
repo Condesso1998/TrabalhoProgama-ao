@@ -25,4 +25,9 @@
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
 
+    <string name="matricula_obrigatorio">Preencha a Matricula</string>
+    <string name="marca_obrigatorio">Preencha a Marca</string>
+    <string name="modelo_obrigatoria">preencha o Modelo</string>
+    <string name="cor_obrigatoria">preencha a Cor</string>
+
 </resources>
