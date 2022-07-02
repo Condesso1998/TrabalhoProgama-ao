@@ -10,9 +10,11 @@ import android.view.ViewGroup
 import android.widget.SimpleCursorAdapter
 import androidx.loader.app.LoaderManager
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import pt.ipg.trabalhofinal.databinding.FragmentListaCarrosBinding
 
 
@@ -165,16 +167,16 @@ private fun guardar() {
         return
     }
 
-    val marca = binding.editTextAutor.text.toString()
+    val marca = binding.editTextMarca.text.toString()
     if (marca.isBlank()) {
-        binding.editTextAutor.error = getString(R.string.Marca_obrigatorio)
-        binding.editTextAutor.requestFocus()
+        binding.editTextMarca.error = getString(R.string.Marca_obrigatorio)
+        binding.editTextMarca.requestFocus()
         return
     }
 
     val modelo = binding.spinnerClientes.selectedItemId
     if (modelo == Spinner.INVALID_ROW_ID) {
-        binding.textViewModelo.error = getString(R.string.Modelo_obrigatoria)
+        binding.textViewModelo.error = getString(R.string.Modelo_obrigatorio)
         binding.spinnerClientes.requestFocus()
         return
     }
@@ -183,7 +185,17 @@ private fun guardar() {
 }
 
 private fun insereCarro(matricula: String, marca: String, modelo: String) {
+    val carro = Carro(matricula, marca, modelo)
 
+    val enderecoLivroInserido = requireActivity().contentResolver.insert(ContentProviderTrabalhoFinal.ENDERECO_Carros, carro.toContentValues())
+
+    if (enderecoLivroInserido == null) {
+        Snackbar.make(binding.editTextMatricula, R.string.erro_guardar_carro, Snackbar.LENGTH_INDEFINITE).show()
+        return
+    }
+
+    Toast.makeText(requireContext(), R.string.carro_guardado_sucesso, Toast.LENGTH_LONG).show()
+    voltaListaCarros()
 }
 
 private fun voltaListaCarros() {

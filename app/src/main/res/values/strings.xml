@@ -30,4 +30,6 @@
     <string name="modelo_obrigatoria">preencha o Modelo</string>
     <string name="cor_obrigatoria">preencha a Cor</string>
 
+    <string name="carro_guardado_sucesso">Carro guardado com sucesso</string>
+    <string name="erro_guardar_carro">Erro ao guardar carro</string>
 </resources>
