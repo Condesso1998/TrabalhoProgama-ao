@@ -24,5 +24,21 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_ListaCarrosFragment_to_EliminarLivroFragment"
+            app:destination="@id/EliminarCarroFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/EliminarCarroFragment"
+        android:name="pt.ipg.trabalhofinal.EliminarCarroFragment"
+        android:label="fragment_eliminar_carro"
+        tools:layout="@layout/fragment_eliminar_carro" >
+        <action
+            android:id="@+id/action_EliminarCarroFragment_to_ListaCarroFragment"
+           app:destination="@+id/ListaCarrosFragment"/>
+
+        <argument
+            android:name="carros"
+            app:argType="pt.ipg.trabalhofinal.Carro" />
     </fragment>
 </navigation>
