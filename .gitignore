@@ -16,3 +16,4 @@ local.properties
 app/build.gradle
 app/src/main/java/pt/ipg/trabalhofinal/TabelaBDCarros.kt
 *.xml
+app/src/main/java/pt/ipg/trabalhofinal/EliminarCarroFragment.kt
