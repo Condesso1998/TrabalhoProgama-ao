@@ -149,7 +149,7 @@ class BaseDadosTest {
         assertTrue(cursor.moveToNext())
 
         val clienteBD = Cliente.fromCursor(cursor)
-
+// eu sou gay
         assertEquals(cliente, clienteBD)
 
         db.close()

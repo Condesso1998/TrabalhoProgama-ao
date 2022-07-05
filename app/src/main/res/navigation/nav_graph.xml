@@ -31,7 +31,7 @@
     <fragment
         android:id="@+id/EliminarCarroFragment"
         android:name="pt.ipg.trabalhofinal.EliminarCarroFragment"
-        android:label="eliminar_carro_label"
+        android:label="@string/eliminar_carro_label"
         tools:layout="@layout/fragment_eliminar_carro" >
         <action
             android:id="@+id/action_EliminarCarroFragment_to_ListaCarroFragment"
