@@ -27,7 +27,9 @@ class MainActivity : AppCompatActivity() {
                 invalidateOptionsMenu()
             }
         }
+    var menu: Menu? = null
     var fragment: Fragment? = null
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +49,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(idMenuAtual, menu)
+        this.menu = menu
         return true
     }
 
@@ -77,6 +80,10 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
+    }
+    fun mostraOpcoesAlterarEliminar(mostra: Boolean) {
+        menu!!.findItem(R.id.action_alterar).setVisible(mostra)
+        menu!!.findItem(R.id.action_eliminar).setVisible(mostra)
     }
 }
 
