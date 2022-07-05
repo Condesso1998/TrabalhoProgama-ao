@@ -4,7 +4,7 @@
     <!-- Strings used for fragments for navigation -->
     <string name="menu_principal_label">First Fragment</string>
     <string name="lista_Carros_labe">Second Fragment</string>
-
+    <string name="eliminar_carro_label">Eliminar Carro</string>
     <string name="Clientes">Clientes</string>
     <string name="Carros">Carros</string>
     <string name="previous">Previous</string>
