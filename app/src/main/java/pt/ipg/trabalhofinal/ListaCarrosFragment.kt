@@ -43,8 +43,7 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     ): View? {
 
         _binding = FragmentListaCarrosBinding.inflate(inflater, container, false)
-        return binding.root
-
+    return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,7 +52,8 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         LoaderManager.getInstance(this).initLoader(ID_LOADER_Carros, null,this)
 
         adapterCarros = AdapterCarros(this)
-        binding.recyclerViewCarros.adapter = adapterCarros
+        binding.recyclerViewCarros
+    //    binding.recyclerViewCarros.adapter = adapterCarros
         binding.recyclerViewCarros.layoutManager = LinearLayoutManager(requireContext())
 
 

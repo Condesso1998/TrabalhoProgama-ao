@@ -10,8 +10,8 @@ import android.provider.BaseColumns
      var Marca: String,
      var Modelo: String,
      var Cor: String,
-     var id: Cliente = -1
-
+     var Cliente: Cliente,
+     var id: Long = -1
          ){
 
 
@@ -22,6 +22,7 @@ import android.provider.BaseColumns
          valores.put(TabelaBDCarros.MARCA, Marca)
          valores.put(TabelaBDCarros.MODELO, Modelo)
          valores.put(TabelaBDCarros.COR, Cor)
+         valores.put(TabelaBDCarros.CAMPO_CLIENTE_ID,Cliente.id)
 
          return valores
      }
@@ -33,6 +34,9 @@ import android.provider.BaseColumns
              val posMarca = cursor.getColumnIndex(TabelaBDCarros.MARCA)
              val posModelo= cursor.getColumnIndex(TabelaBDCarros.MODELO)
              val posCor = cursor.getColumnIndex(TabelaBDCarros.COR)
+             val posIdCliente = cursor.getColumnIndex(TabelaBDCarros.CAMPO_CLIENTE_ID)
+             val posNomeCliente = cursor.getColumnIndex(TabelaBDCliente.NOME)
+
 
 
              val id = cursor.getLong(posId)
@@ -40,8 +44,11 @@ import android.provider.BaseColumns
              val Marca = cursor.getString(posMarca)
              val MODELO = cursor.getString(posModelo)
              val COR = cursor.getString(posCor)
+             val NomeCliente = cursor.getString(posNomeCliente)
+             val Cliente = cursor.getLong(posIdCliente)
+             val cliente = Cliente (NomeCliente,Cliente)
 
-             return Carro(Matricula, Marca, MODELO, COR)
+             return Carro(Matricula, Marca, MODELO, COR, cliente,id)
          }
      }
  }

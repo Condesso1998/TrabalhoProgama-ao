@@ -1,30 +1,29 @@
 package pt.ipg.trabalhofinal
+
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-//import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import org.w3c.dom.Text
 
 
 
 class AdapterCarros (val fragment: ListaCarrosFragment): RecyclerView.Adapter<AdapterCarros.ViewHolderCarro>(){
-    object RecyclerView {
-
-    }
 
 
     var cursor: Cursor? = null
-        get() = field
-        set(value) {
-            if (field != value) {
-                field = value
-                notifyDataSetChanged()
-            }
+    get() = field
+    set(value) {
+        if (field != value) {
+            field = value
+            notifyDataSetChanged()
         }
-    var viewHolderSelecionado : ViewHolderCarro? = null
+    }
+    var viewHolderSelecionado: ViewHolderCarro? = null
 
-    inner class ViewHolderCarro(itemCarro: View) : RecyclerView.ViewHolder(itemCarro), View.OnClickListener {
+    inner class ViewHolderCarro(itemCarro: View) : RecyclerView.ViewHolder(itemCarro),
+        View.OnClickListener {
         val textViewMatricula = itemCarro.findViewById<TextView>(R.id.textViewMatricula)
         val textViewMarca = itemCarro.findViewById<TextView>(R.id.textViewMarca)
         val textViewModelo = itemCarro.findViewById<TextView>(R.id.textViewModelo)
@@ -33,12 +32,13 @@ class AdapterCarros (val fragment: ListaCarrosFragment): RecyclerView.Adapter<Ad
         init {
             itemCarro.setOnClickListener(this)
         }
+
         var carro: Carro? = null
             get() = field
             set(value: Carro?) {
                 field = value
 
-                textViewMatricula.text=carro?.Matricula ?:""
+                textViewMatricula.text = carro?.Matricula ?: ""
                 textViewMarca.text = carro?.Marca ?: ""
                 textViewModelo.text = carro?.Modelo ?: ""
                 textViewCor.text = carro?.Cor ?: ""
@@ -84,7 +84,7 @@ class AdapterCarros (val fragment: ListaCarrosFragment): RecyclerView.Adapter<Ad
      * @see .getItemViewType
      * @see .onBindViewHolder
      */
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCarros {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):  ViewHolderCarro {
         TODO("Not yet implemented")
     }
 
@@ -109,7 +109,7 @@ class AdapterCarros (val fragment: ListaCarrosFragment): RecyclerView.Adapter<Ad
      * item at the given position in the data set.
      * @param position The position of the item within the adapter's data set.
      */
-    override fun onBindViewHolder(holder: ViewHolderCarros, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolderCarro, position: Int) {
         cursor!!.moveToPosition(position)
         holder.carro = Carro.fromCursor(cursor!!)
     }
@@ -124,4 +124,5 @@ class AdapterCarros (val fragment: ListaCarrosFragment): RecyclerView.Adapter<Ad
 
         return cursor!!.count
     }
-    }
+}
+

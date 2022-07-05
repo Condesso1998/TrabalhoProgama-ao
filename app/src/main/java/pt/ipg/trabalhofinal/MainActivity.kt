@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
          if (fragment is MenuFirstFragment){
              opcaoProcessada = (fragment as MenuFirstFragment).processaOpcaoMenu(item)
          } else if (fragment is ListaCarrosFragment) {
-             opcaoProcessada = (fragment as ListaCarrosFragmentFragment).processaOpcaoMenu(item)
+             opcaoProcessada = (fragment as ListaCarrosFragment).processaOpcaoMenu(item)
          }else if ( fragment is InserirCarrosFragment){
              opcaoProcessada = (fragment as InserirCarrosFragment).processaOpcaoMenu(item)
          }

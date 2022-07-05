@@ -66,10 +66,10 @@ class BaseDadosTest {
     fun consegueInserirCarro() {
         val db = getWritableDatabase()
 
-        val Cliente = Cliente("Rui Condesso")
-        insereCliente(db, Cliente )
+        val cliente = Cliente("Rui Condesso")
+        insereCliente(db, cliente )
 
-        val Carro = Carro("AF-15-OU", "Mercedes", "A45","Cinza",Cliente)
+        val Carro = Carro("AF-15-OU", "Mercedes", "A45","Cinza",cliente)
         insereCarro(db, Carro);
 
         db.close()
@@ -114,7 +114,11 @@ class BaseDadosTest {
     fun consegueEliminarCarro() {
         val db = getWritableDatabase()
 
-        val Carro = Carro("AF-15-OU", "Mercedes", "A45","Cinza")
+
+        val cliente = Cliente("Rui Condesso")
+        insereCliente(db, cliente )
+
+        val Carro = Carro("AF-15-OU", "Mercedes", "A45","Cinza",cliente)
         insereCarro(db, Carro)
 
         val registosEliminados = TabelaBDCarros(db).delete(
