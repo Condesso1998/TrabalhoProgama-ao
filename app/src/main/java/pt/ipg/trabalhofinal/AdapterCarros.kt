@@ -1,15 +1,17 @@
 package pt.ipg.trabalhofinal
-
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
+//import androidx.recyclerview.widget.RecyclerView
 import org.w3c.dom.Text
 
 
 
-class AdapterCarros (val fragment: ListaCarrosFragment): RecyclerView.Adapter<AdapterCarros.ViewHolderCarros>(){
+class AdapterCarros (val fragment: ListaCarrosFragment): RecyclerView.Adapter<AdapterCarros.ViewHolderCarro>(){
+    object RecyclerView {
+
+    }
 
 
     var cursor: Cursor? = null
@@ -20,13 +22,17 @@ class AdapterCarros (val fragment: ListaCarrosFragment): RecyclerView.Adapter<Ad
                 notifyDataSetChanged()
             }
         }
-    class ViewHolderCarros(itemCarro:  View) : RecyclerView.ViewHolder(itemCarro)  {
+    var viewHolderSelecionado : ViewHolderCarro? = null
+
+    inner class ViewHolderCarro(itemCarro: View) : RecyclerView.ViewHolder(itemCarro), View.OnClickListener {
         val textViewMatricula = itemCarro.findViewById<TextView>(R.id.textViewMatricula)
         val textViewMarca = itemCarro.findViewById<TextView>(R.id.textViewMarca)
         val textViewModelo = itemCarro.findViewById<TextView>(R.id.textViewModelo)
         val textViewCor = itemCarro.findViewById<TextView>(R.id.textViewCor)
 
-
+        init {
+            itemCarro.setOnClickListener(this)
+        }
         var carro: Carro? = null
             get() = field
             set(value: Carro?) {
@@ -39,6 +45,19 @@ class AdapterCarros (val fragment: ListaCarrosFragment): RecyclerView.Adapter<Ad
 
             }
 
+        override fun onClick(v: View?) {
+            viewHolderSelecionado?.desseleciona()
+            seleciona()
+        }
+
+        private fun seleciona() {
+            itemView.setBackgroundResource(android.R.color.holo_orange_light)
+            viewHolderSelecionado = this
+        }
+
+        private fun desseleciona() {
+            itemView.setBackgroundResource(android.R.color.white)
+        }
     }
 
     /**
